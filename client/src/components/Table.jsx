@@ -1,13 +1,4 @@
-import {
-  Container,
-  Wrapper,
-  ButtonAction,
-  Button,
-  TableContainer,
-  TableRow,
-  TableHeader,
-  TableData,
-} from "./styles/Table.styled";
+import { Container, Wrapper, TableContainer, TableRow, TableHeader, TableData } from "./styles/Table.styled";
 
 const arr = ["some data1", "some data2", "some data3", "some data4", "somedata5"];
 
@@ -15,9 +6,6 @@ export default function Table() {
   return (
     <Container>
       <Wrapper>
-        <ButtonAction>
-          <Button>New Task</Button>
-        </ButtonAction>
         <TableContainer>
           <thead>
             <TableRow header={true}>
