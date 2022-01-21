@@ -1,4 +1,13 @@
-import { Container, Wrapper, TableContainer, TableRow, TableHeader, TableData } from "./styles/Table.styled";
+import {
+  Container,
+  Wrapper,
+  TableContainer,
+  TableRow,
+  TableHeader,
+  TableData,
+  PriorityContainer,
+  Priority,
+} from "./styles/Table.styled";
 
 export default function Table({ data = [] }) {
   return (
@@ -20,7 +29,13 @@ export default function Table({ data = [] }) {
                 <TableData>{item.name}</TableData>
                 <TableData>{item.in_charge.name}</TableData>
                 <TableData>{item.due_date}</TableData>
-                <TableData>{item.priority}</TableData>
+                <TableData>
+                  <PriorityContainer>
+                    {[...Array(item.priority)].map((v, i) => (
+                      <Priority key={i} />
+                    ))}
+                  </PriorityContainer>
+                </TableData>
                 <TableData>{item.in_charge.role}</TableData>
               </TableRow>
             ))}

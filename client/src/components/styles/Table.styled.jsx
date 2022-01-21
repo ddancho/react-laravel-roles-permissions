@@ -16,6 +16,7 @@ export const TableContainer = styled.table`
 
 export const TableRow = styled.tr`
   display: flex;
+  align-items: center;
   justify-content: space-evenly;
   border: ${({ header }) => (header ? "none" : "1px solid chocolate")};
 
@@ -49,4 +50,18 @@ export const TableData = styled.td`
   &:last-child {
     border-right: none;
   }
+`;
+
+export const PriorityContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Priority = styled.div`
+  width: 16px;
+  height: 16px;
+  background-color: red;
+  border-radius: 50%;
+  margin-right: 10px;
 `;
