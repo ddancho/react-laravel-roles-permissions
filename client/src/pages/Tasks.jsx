@@ -1,14 +1,9 @@
 import { Container, Wrapper, Button, Paginate } from "./styles/Tasks.styled";
 import { useState, useEffect, useCallback } from "react";
 import Table from "../components/Table";
+import IsAuthorized from "../components/IsAuthorized";
+import { TaskActions } from "../components/IsAuthorized";
 import api from "../helpers/api";
-
-const parseLink = (link) => {
-  if (link) {
-    return link.split("page=")[1];
-  }
-  return link;
-};
 
 export default function Tasks() {
   const [data, setData] = useState([]);
@@ -16,6 +11,17 @@ export default function Tasks() {
   const [prevPage, setPrevPage] = useState(null);
   const [nextPage, setNextPage] = useState(null);
   const [pageCount, setPageCount] = useState(0);
+
+  const handleNewTask = () => {
+    api()
+      .get("/api/tasks/create")
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const tasks = useCallback(() => {
     api()
@@ -36,6 +42,13 @@ export default function Tasks() {
     tasks();
   }, [tasks]);
 
+  const parseLink = (link) => {
+    if (link) {
+      return link.split("page=")[1];
+    }
+    return link;
+  };
+
   const onPageChange = (event) => {
     setCurrentPage(event.selected + 1);
   };
@@ -53,7 +66,9 @@ export default function Tasks() {
   return (
     <Container>
       <Wrapper>
-        <Button>New Task</Button>
+        <IsAuthorized componentAction={TaskActions.createTask}>
+          <Button onClick={handleNewTask}>New Task</Button>
+        </IsAuthorized>
         <Table data={data} />
         <Paginate
           breakLabel='...'
