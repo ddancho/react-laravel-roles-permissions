@@ -1,8 +1,6 @@
 import { Container, Wrapper, TableContainer, TableRow, TableHeader, TableData } from "./styles/Table.styled";
 
-const arr = ["some data1", "some data2", "some data3", "some data4", "somedata5"];
-
-export default function Table() {
+export default function Table({ data = [] }) {
   return (
     <Container>
       <Wrapper>
@@ -17,21 +15,15 @@ export default function Table() {
             </TableRow>
           </thead>
           <tbody>
-            <TableRow>
-              {arr.map((sd) => {
-                return <TableData>{sd}</TableData>;
-              })}
-            </TableRow>
-            <TableRow>
-              {arr.map((sd) => {
-                return <TableData>{sd}</TableData>;
-              })}
-            </TableRow>
-            <TableRow>
-              {arr.map((sd) => {
-                return <TableData>{sd}</TableData>;
-              })}
-            </TableRow>
+            {data.map((item) => (
+              <TableRow key={item.id}>
+                <TableData>{item.name}</TableData>
+                <TableData>{item.in_charge.name}</TableData>
+                <TableData>{item.due_date}</TableData>
+                <TableData>{item.priority}</TableData>
+                <TableData>{item.in_charge.role}</TableData>
+              </TableRow>
+            ))}
           </tbody>
         </TableContainer>
       </Wrapper>

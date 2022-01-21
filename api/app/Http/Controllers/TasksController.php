@@ -13,7 +13,7 @@ class TasksController extends Controller
      */
     public function index()
     {
-        return TaskResource::collection(Task::all());
+        return TaskResource::collection(Task::paginate(10));
     }
 
     /**

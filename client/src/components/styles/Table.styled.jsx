@@ -26,7 +26,7 @@ export const TableRow = styled.tr`
 
 export const TableHeader = styled.th`
   width: 100%;
-  text-align: left;
+  text-align: center;
   font-weight: bold;
   font-size: 18px;
   padding: 8px 4px;
@@ -38,9 +38,9 @@ export const TableData = styled.td`
   text-align: left;
   font-weight: 300;
   font-size: 14px;
-  padding: 8px 4px;
+  padding: 16px 8px;
   color: darkslategrey;
-  background-color: #ece3e3;
+  background-color: #f6f6f6;
 
   &:nth-child(n) {
     border-right: 1px solid chocolate;
