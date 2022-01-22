@@ -5,8 +5,9 @@ import {
   TableRow,
   TableHeader,
   TableData,
-  PriorityContainer,
   Priority,
+  ActionsContainer,
+  Action,
 } from "./styles/Table.styled";
 
 export default function Table({ data = [] }) {
@@ -30,13 +31,15 @@ export default function Table({ data = [] }) {
                 <TableData>{item.in_charge.name}</TableData>
                 <TableData>{item.due_date}</TableData>
                 <TableData>
-                  <PriorityContainer>
-                    {[...Array(item.priority)].map((v, i) => (
-                      <Priority key={i} />
-                    ))}
-                  </PriorityContainer>
+                  {[...Array(item.priority)].map((v, i) => (
+                    <Priority key={i} />
+                  ))}
                 </TableData>
-                <TableData>{item.in_charge.role}</TableData>
+                <TableData>
+                  <ActionsContainer>
+                    <Action>Edit</Action>
+                  </ActionsContainer>
+                </TableData>
               </TableRow>
             ))}
           </tbody>

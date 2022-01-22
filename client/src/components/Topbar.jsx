@@ -53,7 +53,9 @@ export default function Topbar() {
         <Right>
           {user.name ? (
             <>
-              <User>{user.name}</User>
+              <User>
+                {user.name} ({user.role})
+              </User>
               <Logout onClick={handleLogout}>Logout</Logout>
             </>
           ) : (

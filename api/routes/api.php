@@ -19,11 +19,12 @@ use App\Http\Controllers\TasksController;
 Route::get('/tasks', [TasksController::class, 'index']);
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::get('/user', fn (Request $request) => new UserResource($request->user()));
+
     Route::get('/tasks/isAuthorized/toStore', [TasksController::class, 'isAuthorizedToStore']);
     Route::get('/tasks/isAuthorized/toUpdate', [TasksController::class, 'isAuthorizedToUpdate']);
     Route::get('/tasks/isAuthorized/toDestroy', [TasksController::class, 'isAuthorizedToDestroy']);
 
+    // to do -> change to post
     Route::get('/tasks/create', [TasksController::class, 'store']);
 });
-
-Route::get('/user', fn (Request $request) => new UserResource($request->user()))->middleware('auth:sanctum');
