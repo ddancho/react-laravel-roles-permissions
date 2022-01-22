@@ -1,9 +1,11 @@
 import { Container, Wrapper, Button, Paginate } from "./styles/Tasks.styled";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, lazy, Suspense } from "react";
+import { ModelRoute, TaskActions } from "../components/IsAuthorized";
+import { BeatLoader } from "react-spinners";
 import Table from "../components/Table";
-import IsAuthorized from "../components/IsAuthorized";
-import { TaskActions } from "../components/IsAuthorized";
 import api from "../helpers/api";
+
+const IsAuthorized = lazy(() => import("../components/IsAuthorized"));
 
 export default function Tasks() {
   const [data, setData] = useState([]);
@@ -66,9 +68,11 @@ export default function Tasks() {
   return (
     <Container>
       <Wrapper>
-        <IsAuthorized componentAction={TaskActions.createTask}>
-          <Button onClick={handleNewTask}>New Task</Button>
-        </IsAuthorized>
+        <Suspense fallback={<BeatLoader size={16} />}>
+          <IsAuthorized model={ModelRoute.task} action={TaskActions.createTask}>
+            <Button onClick={handleNewTask}>New Task</Button>
+          </IsAuthorized>
+        </Suspense>
         <Table data={data} />
         <Paginate
           breakLabel='...'

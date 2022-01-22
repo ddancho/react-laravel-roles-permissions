@@ -22,7 +22,7 @@ class TasksController extends Controller
      */
     public function isAuthorizedToStore()
     {
-        $this->authorize('create', Task::class);
+        $this->authorize('createTask', Task::class);
 
         return response(status: 204);
     }
@@ -33,7 +33,7 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('create', Task::class);
+        $this->authorize('createTask', Task::class);
     }
 
     /**
@@ -43,7 +43,7 @@ class TasksController extends Controller
      */
     public function isAuthorizedToUpdate(Request $request, Task $task)
     {
-        $this->authorize('update', $task);
+        $this->authorize('updateTask', $task);
 
         return response(status: 204);
     }
@@ -55,7 +55,7 @@ class TasksController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        $this->authorize('update', $task);
+        $this->authorize('updateTask', $task);
     }
 
     /**
@@ -65,7 +65,7 @@ class TasksController extends Controller
      */
     public function isAuthorizedToDestroy(Request $request, Task $task)
     {
-        $this->authorize('delete', $task);
+        $this->authorize('deleteTask', $task);
 
         return response(status: 204);
     }
@@ -76,6 +76,6 @@ class TasksController extends Controller
      */
     public function destroy(Task $task)
     {
-        $this->authorize('delete', $task);
+        $this->authorize('deleteTask', $task);
     }
 }

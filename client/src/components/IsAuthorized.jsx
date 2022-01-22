@@ -2,23 +2,33 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import api from "../helpers/api";
 
-export default function IsAuthorized({ children, componentAction }) {
+export default function IsAuthorized({ children, model, action, id = null }) {
   const [show, setShow] = useState(false);
   const { userInfo: user } = useSelector((state) => state.user);
 
   useEffect(() => {
+    let url = `/api/${model}/isAuthorized/${action}`;
+
+    if (id) {
+      url = url.concat(`/${id}`);
+    }
+
     api()
-      .get(`/api/tasks/isAuthorized/${componentAction}`)
+      .get(url)
       .then((res) => {
         setShow(true);
       })
       .catch((err) => {
         setShow(false);
       });
-  }, [componentAction, user]);
+  }, [model, action, user, id]);
 
-  return <>{show && children}</>;
+  return <>{show ? children : ""}</>;
 }
+
+export const ModelRoute = {
+  task: "tasks",
+};
 
 export const TaskActions = {
   createTask: "toStore",

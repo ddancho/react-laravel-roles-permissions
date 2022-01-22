@@ -15,7 +15,7 @@ class TaskPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function createTask(User $user)
     {
         return $user->role_id == Role::ADMINISTRATOR || $user->role_id == Role::SUPER_ADMINISTRATOR;
     }
@@ -25,7 +25,7 @@ class TaskPolicy
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Task $task)
+    public function updateTask(User $user, Task $task)
     {
         return $user->role_id == Role::ADMINISTRATOR ||
             $user->role_id == Role::SUPER_ADMINISTRATOR ||
@@ -37,7 +37,7 @@ class TaskPolicy
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Task $task)
+    public function deleteTask(User $user, Task $task)
     {
         return $user->role_id == Role::ADMINISTRATOR || $user->role_id == Role::SUPER_ADMINISTRATOR;
     }

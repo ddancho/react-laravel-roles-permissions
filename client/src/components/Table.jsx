@@ -9,6 +9,11 @@ import {
   ActionsContainer,
   Action,
 } from "./styles/Table.styled";
+import { Suspense, lazy } from "react";
+import { ModelRoute, TaskActions } from "./IsAuthorized";
+import { BeatLoader } from "react-spinners";
+
+const IsAuthorized = lazy(() => import("./IsAuthorized"));
 
 export default function Table({ data = [] }) {
   return (
@@ -37,7 +42,11 @@ export default function Table({ data = [] }) {
                 </TableData>
                 <TableData>
                   <ActionsContainer>
-                    <Action>Edit</Action>
+                    <Suspense fallback={<BeatLoader size={16} />}>
+                      <IsAuthorized model={ModelRoute.task} action={TaskActions.updateTask} id={item.id}>
+                        <Action>Edit</Action>
+                      </IsAuthorized>
+                    </Suspense>
                   </ActionsContainer>
                 </TableData>
               </TableRow>
