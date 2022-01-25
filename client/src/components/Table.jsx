@@ -10,8 +10,10 @@ import {
   Action,
 } from "./styles/Table.styled";
 import { Suspense, lazy } from "react";
-import { ModelRoute, TaskActions } from "./IsAuthorized";
+import { ModelRoutes } from "../helpers/modelRoutes";
+import { TaskActions } from "../helpers/modelActions";
 import { BeatLoader } from "react-spinners";
+import { Link } from "react-router-dom";
 
 const IsAuthorized = lazy(() => import("./IsAuthorized"));
 
@@ -37,14 +39,16 @@ export default function Table({ data = [] }) {
                 <TableData>{item.due_date}</TableData>
                 <TableData>
                   {[...Array(item.priority)].map((v, i) => (
-                    <Priority key={i} />
+                    <Priority key={i} status={item.status} />
                   ))}
                 </TableData>
                 <TableData>
                   <ActionsContainer>
                     <Suspense fallback={<BeatLoader size={16} />}>
-                      <IsAuthorized model={ModelRoute.task} action={TaskActions.updateTask} id={item.id}>
-                        <Action>Edit</Action>
+                      <IsAuthorized model={ModelRoutes.task} action={TaskActions.updateTask} id={item.id}>
+                        <Link to={`/tasks/${item.id}/edit`}>
+                          <Action>Edit</Action>
+                        </Link>
                       </IsAuthorized>
                     </Suspense>
                   </ActionsContainer>

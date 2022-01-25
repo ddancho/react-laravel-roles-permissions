@@ -23,6 +23,7 @@ class TaskResource extends JsonResource
             'description' => $this->description,
             'due_date' => Carbon::parse($this->due_date)->format('Y-m-d H:i:s'),
             'priority' => $this->priority,
+            'status' => $this->status,
             'in_charge' => new UserResource(User::findOrFail($this->user_id))
         ];
     }

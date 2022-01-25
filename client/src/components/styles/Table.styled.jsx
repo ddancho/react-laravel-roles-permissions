@@ -64,7 +64,7 @@ export const TableData = styled.td`
 export const Priority = styled.div`
   width: 16px;
   height: 16px;
-  background-color: red;
+  background-color: ${({ status }) => (status ? "black" : "red")};
   border-radius: 50%;
   margin-right: 10px;
 `;

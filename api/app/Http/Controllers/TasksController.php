@@ -14,7 +14,7 @@ class TasksController extends Controller
      */
     public function index()
     {
-        return TaskResource::collection(Task::paginate(10));
+        return TaskResource::collection(Task::with(['user'])->paginate(10));
     }
 
     /**
@@ -41,6 +41,20 @@ class TasksController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
+    public function info(Request $request, Task $task)
+    {
+        $this->authorize('updateTask', $task);
+
+        return response()->json([
+            'task' => new TaskResource($task)
+        ]);
+    }
+
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Task  $task
+     * @return \Illuminate\Http\Response
+     */
     public function isAuthorizedToUpdate(Request $request, Task $task)
     {
         $this->authorize('updateTask', $task);
@@ -56,6 +70,16 @@ class TasksController extends Controller
     public function update(Request $request, Task $task)
     {
         $this->authorize('updateTask', $task);
+
+        $this->validate($request, [
+            'status' => 'required|numeric|min:0|max:1'
+        ]);
+
+        $task->update([
+            'status' => $request->status
+        ]);
+
+        return response(status: 200);
     }
 
     /**

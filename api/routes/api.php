@@ -25,6 +25,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/tasks/isAuthorized/toUpdate/{task}', [TasksController::class, 'isAuthorizedToUpdate']);
     Route::get('/tasks/isAuthorized/toDestroy/{task}', [TasksController::class, 'isAuthorizedToDestroy']);
 
+    Route::get('/tasks/{task}', [TasksController::class, 'info']);
+
     Route::post('/tasks/create', [TasksController::class, 'store']);
-    Route::post('/tasks/update', [TasksController::class, 'update']);
+    Route::post('/tasks/{task}/update', [TasksController::class, 'update']);
 });

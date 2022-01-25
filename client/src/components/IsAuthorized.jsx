@@ -25,13 +25,3 @@ export default function IsAuthorized({ children, model, action, id = null }) {
 
   return <>{show ? children : ""}</>;
 }
-
-export const ModelRoute = {
-  task: "tasks",
-};
-
-export const TaskActions = {
-  createTask: "toStore",
-  updateTask: "toUpdate",
-  deleteTask: "toDestroy",
-};

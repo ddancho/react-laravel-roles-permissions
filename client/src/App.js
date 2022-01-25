@@ -4,6 +4,7 @@ import Topbar from "./components/Topbar";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import EditTask from "./pages/EditTask";
 import PageNotFound from "./pages/PageNotFound";
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
@@ -28,6 +29,9 @@ function App() {
           <Route exact path='/login'>
             {user.name !== undefined && <Redirect to='/' />}
             <Login />
+          </Route>
+          <Route exact path={`/tasks/:id(\\d+)/edit`}>
+            <EditTask />
           </Route>
           <Route path='*'>
             <PageNotFound />

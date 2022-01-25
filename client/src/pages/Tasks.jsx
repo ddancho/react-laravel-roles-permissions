@@ -1,6 +1,7 @@
 import { Container, Wrapper, Button, Paginate } from "./styles/Tasks.styled";
 import { useState, useEffect, useCallback, lazy, Suspense } from "react";
-import { ModelRoute, TaskActions } from "../components/IsAuthorized";
+import { ModelRoutes } from "../helpers/modelRoutes";
+import { TaskActions } from "../helpers/modelActions";
 import { BeatLoader } from "react-spinners";
 import Table from "../components/Table";
 import api from "../helpers/api";
@@ -69,7 +70,7 @@ export default function Tasks() {
     <Container>
       <Wrapper>
         <Suspense fallback={<BeatLoader size={16} />}>
-          <IsAuthorized model={ModelRoute.task} action={TaskActions.createTask}>
+          <IsAuthorized model={ModelRoutes.task} action={TaskActions.createTask}>
             <Button onClick={handleNewTask}>New Task</Button>
           </IsAuthorized>
         </Suspense>
