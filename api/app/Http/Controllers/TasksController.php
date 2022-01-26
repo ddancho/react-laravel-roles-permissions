@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Http\Resources\TaskResource;
-use App\Http\Resources\UserResource;
 
 class TasksController extends Controller
 {
@@ -34,6 +34,24 @@ class TasksController extends Controller
     public function store(Request $request)
     {
         $this->authorize('createTask', Task::class);
+
+        $this->validate($request, [
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'priority' => 'required|numeric|min:1|max:5',
+            'dueDate' => 'required',
+            'userId' => 'required|numeric',
+        ]);
+
+        Task::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'priority' => $request->priority,
+            'due_date' => Carbon::createFromTimestamp(strtotime($request->dueDate)),
+            'user_id' => $request->userId,
+        ]);
+
+        return response(status: 201);
     }
 
     /**

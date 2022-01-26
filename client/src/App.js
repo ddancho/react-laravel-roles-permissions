@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import EditTask from "./pages/EditTask";
+import CreateTask from "./pages/CreateTask";
 import PageNotFound from "./pages/PageNotFound";
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route exact path={`/tasks/:id(\\d+)/edit`}>
             <EditTask />
+          </Route>
+          <Route exact path='/tasks/create'>
+            <CreateTask />
           </Route>
           <Route path='*'>
             <PageNotFound />

@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TasksController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +30,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::post('/tasks/create', [TasksController::class, 'store']);
     Route::post('/tasks/{task}/update', [TasksController::class, 'update']);
+
+    Route::get('/users/autocomplete-search', [UsersController::class, 'autocompleteSearch']);
 });
