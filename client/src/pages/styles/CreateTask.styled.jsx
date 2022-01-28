@@ -33,7 +33,7 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   width: 80%;
-  height: 400px;
+  height: 440px;
   background-color: white;
   border-radius: 10px;
   border: 1px solid #c2e7ba;
@@ -43,16 +43,32 @@ export const Form = styled.form`
 
 export const InputAction = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 110px;
+`;
+
+export const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin: 0 10px;
+
+  & > span {
+    font-size: 12px;
+    margin-top: 6px;
+    visibility: hidden;
+  }
 `;
 
 export const Input = styled.input`
-  width: 100%;
   height: 46px;
   border-radius: 10px;
   border: 1px solid gray;
   font-size: 18px;
   padding-left: 20px;
-  margin: 20px 10px;
 
   &:focus {
     outline: none;
@@ -60,17 +76,25 @@ export const Input = styled.input`
 `;
 
 export const TextArea = styled.textarea`
-  width: 100%;
-  height: 120px;
-  margin: 20px 10px;
   border-radius: 10px;
   border: 1px solid gray;
   font-size: 16px;
-  padding-top: 10px;
-  padding-left: 20px;
+  padding: 10px 10px;
   resize: none;
 
   &:focus {
     outline: none;
   }
+`;
+
+export const ErrMsg = styled.p`
+  color: red;
+  visibility: ${({ show }) => (show ? "visible" : "hidden")};
+`;
+
+export const SuccessMsg = styled.p`
+  margin-left: 240px;
+  font-size: 12px;
+  color: green;
+  visibility: ${({ show }) => (show ? "visible" : "hidden")};
 `;

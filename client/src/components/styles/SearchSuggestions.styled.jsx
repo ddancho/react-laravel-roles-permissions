@@ -5,18 +5,17 @@ export const SearchWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 105%;
-  margin-left: 10px;
-  margin-right: 10px;
+  padding-right: 10px;
 `;
 
 export const SearchInput = styled(Input)`
   position: relative;
+  width: 100%;
 `;
 
 export const Dropdown = styled.div`
   position: absolute;
-  top: 276px;
+  top: 278px;
   width: 270px;
   background: white;
   border-radius: 10px;
