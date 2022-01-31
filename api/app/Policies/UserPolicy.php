@@ -18,4 +18,22 @@ class UserPolicy
     {
         return $user->role_id == Role::ADMINISTRATOR || $user->role_id == Role::SUPER_ADMINISTRATOR;
     }
+
+    /**
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function accessAdminPage(User $user)
+    {
+        return $user->role_id == Role::SUPER_ADMINISTRATOR;
+    }
+
+    /**
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function updateRoleToAdmin(User $user)
+    {
+        return $user->role_id == Role::SUPER_ADMINISTRATOR;
+    }
 }

@@ -32,4 +32,15 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/tasks/{task}/update', [TasksController::class, 'update']);
 
     Route::get('/users/autocomplete-search', [UsersController::class, 'autocompleteSearch']);
+
+    Route::get('/users/isAuthorized/toAccessAdminPage', [
+        UsersController::class, 'isAuthorizedToAccessAdminPage'
+    ]);
+    Route::get('/users/isAuthorized/toUpdateRoleToAdmin', [
+        UsersController::class, 'isAuthorizedToUpdateRoleToAdmin'
+    ]);
+
+    Route::post('/users/updateRole/{user}', [
+        UsersController::class, 'updateUserRole'
+    ]);
 });

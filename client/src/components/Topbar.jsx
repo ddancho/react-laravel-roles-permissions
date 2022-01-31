@@ -3,6 +3,9 @@ import { Link, useLocation, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setUserInfo } from "../redux/user";
+import { ModelRoutes } from "../helpers/modelRoutes";
+import { UserActions } from "../helpers/modelActions";
+import IsAuthorized from "./IsAuthorized";
 import api from "../helpers/api";
 
 export default function Topbar() {
@@ -49,6 +52,13 @@ export default function Topbar() {
               <Logo>Tasks</Logo>
             </Link>
           </LinkAction>
+          <IsAuthorized model={ModelRoutes.user} action={UserActions.accessAdminPage}>
+            <LinkAction current={currentPath === "/admin/home"}>
+              <Link to='/admin/home'>
+                <Logo>Admin Panel</Logo>
+              </Link>
+            </LinkAction>
+          </IsAuthorized>
         </Left>
         <Right>
           {user.name ? (

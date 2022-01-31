@@ -15,7 +15,7 @@ export const SearchInput = styled(Input)`
 
 export const Dropdown = styled.div`
   position: absolute;
-  top: 278px;
+  top: ${({ top }) => `${top}px`};
   width: 270px;
   background: white;
   border-radius: 10px;

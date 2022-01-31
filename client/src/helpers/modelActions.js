@@ -3,3 +3,8 @@ export const TaskActions = {
   updateTask: "toUpdate",
   deleteTask: "toDestroy",
 };
+
+export const UserActions = {
+  accessAdminPage: "toAccessAdminPage",
+  updateUserRole: "toUpdateRoleToAdmin",
+};

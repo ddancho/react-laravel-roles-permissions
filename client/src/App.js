@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import EditTask from "./pages/EditTask";
 import CreateTask from "./pages/CreateTask";
 import PageNotFound from "./pages/PageNotFound";
+import AdminPage from "./pages/AdminPage";
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route exact path='/tasks/create'>
             <CreateTask />
+          </Route>
+          <Route exact path='/admin/home'>
+            <AdminPage />
           </Route>
           <Route path='*'>
             <PageNotFound />

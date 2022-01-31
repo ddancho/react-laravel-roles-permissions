@@ -121,7 +121,7 @@ export default function CreateTask() {
                   onChange={debouncedSearchHandler}
                 />
                 {users.length > 0 && (
-                  <SearchSuggestions users={users} onClickSuggestion={handleClickSuggestion} />
+                  <SearchSuggestions users={users} onClickSuggestion={handleClickSuggestion} top={274} />
                 )}
                 <span>
                   {errors?.userId ? <ErrMsg show={errors.userId.length > 0}>{errors.userId[0]}</ErrMsg> : 0}

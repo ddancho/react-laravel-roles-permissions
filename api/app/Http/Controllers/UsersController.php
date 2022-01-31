@@ -34,4 +34,45 @@ class UsersController extends Controller
 
         return response()->json($searchResult);
     }
+
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function isAuthorizedToAccessAdminPage(Request $request)
+    {
+        $this->authorize('accessAdminPage', $request->user());
+
+        return response(status: 204);
+    }
+
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function isAuthorizedToUpdateRoleToAdmin(Request $request)
+    {
+        $this->authorize('updateRoleToAdmin', $request->user());
+
+        return response(status: 204);
+    }
+
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function updateUserRole(Request $request, User $user)
+    {
+        $this->authorize('updateRoleToAdmin', $request->user());
+
+        $this->validate($request, [
+            'userId' => 'required|numeric',
+        ]);
+
+        $user->update([
+            'role_id' => Role::ADMINISTRATOR
+        ]);
+
+        return response(status: 200);
+    }
 }
