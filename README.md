@@ -14,7 +14,7 @@ Each role has certain privileges controlled by the level of authorization
 
 By default one user with super administrator role is created :
 
-Email : superadmin@example.com
+Email : superadmin at example.com
 Password : 123
 
 And 10 users with 3 tasks :
