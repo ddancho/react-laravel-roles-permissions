@@ -1,15 +1,9 @@
-# Laravel api
+# Api
 
-The api backend was bootstrapped as docker containers : curl -s https://laravel.build/api | bash
+Please follow the instructions https://github.com/ddancho/react-laravel-spa-auth/tree/master/api
 
-Meilisearch and selenium are disabled.
+After migrations execute command :
 
-Redis added as session driver.
+./vendor/bin/sail artisan db:seed
 
-cd into project folder and exec ./vendor/bin/sail up
-
-migrate ./vendor/bin/sail artisan migrate
-
-seed database ./vendor/bin/sail artisan db:seed
-
-phpmyadmin is on localhost:8080
+To seed database tables
